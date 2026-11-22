@@ -7,7 +7,7 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 ## Status
 - [x] Phase 0: setup
 - [ ] Phase 1: baseline + SFT
-- [ ] Phase 2: golden dataset
+- [x] Phase 2: golden dataset
 - [ ] Phase 3: PPO
 - [ ] Phase 4: GRPO
 - [ ] Phase 5: comparison + analysis

@@ -7,7 +7,7 @@ BASE_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"          # main model
 TINY_MODEL = "HuggingFaceTB/SmolLM2-135M-Instruct"  # fast debugging model
 
 # Hugging Face repo names for the trained models (fill in your HF username)
-HF_USER = "your-hf-username"
+HF_USER = "ubaidii123"
 HF_REPOS = {
     "sft": f"{HF_USER}/medalign-sft",
     "ppo": f"{HF_USER}/medalign-ppo",

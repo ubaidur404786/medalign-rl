@@ -26,7 +26,7 @@ I compared three ways to align a small medical LLM, end to end, on a free Colab 
 • With only 30 and 20 safety items, a gap smaller than about ±[..] points can be chance.
 • Rule rewards are cheap and hard to game on MCQ, but a model can learn to "say the keyword" on safety prompts. Read the answers, not just the scores.
 
-Models: huggingface.co/[HF_USER]
+Models: huggingface.co/ubaidii123
 Code and notebooks: github.com/ubaidur404786/medalign-rl
 
 ⚠️ Educational demo only. Not medical advice.

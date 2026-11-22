@@ -9,7 +9,7 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 - [ ] Phase 1: baseline + SFT
 - [x] Phase 2: golden dataset
 - [x] Phase 3: PPO (code ready, training runs on Colab)
-- [ ] Phase 4: GRPO
+- [x] Phase 4: GRPO (code ready, training runs on Colab)
 - [ ] Phase 5: comparison + analysis
 - [ ] Phase 6: Hugging Face + GitHub + post
 - [ ] Phase 7: FastAPI + React app

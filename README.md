@@ -11,8 +11,9 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 - [x] Phase 3: PPO (code ready, training runs on Colab)
 - [x] Phase 4: GRPO (code ready, training runs on Colab)
 - [x] Phase 5: comparison + analysis (notebook ready, fills in after Colab runs)
-- [x] Phase 6: Hugging Face + GitHub + post (notebook 06 + post draft; push runs on Colab)
-- [ ] Phase 7: FastAPI + React app
+- [ ] Phase 6: upload to Hugging Face + GitHub (notebook 06 ready; runs on Colab after 01-05)
+- [ ] Phase 7: FastAPI + React app + deployment
+- [ ] Phase 8: LinkedIn post with GIF (draft in docs/linkedin_post.md)
 
 The full plan is in [PLAN.md](PLAN.md).
 

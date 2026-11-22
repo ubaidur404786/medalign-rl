@@ -9,7 +9,8 @@ from medrl.data import to_messages
 def load_model(model_name: str, adapter: str | None = None):
     """Return (model, tokenizer). `adapter` is a local path or HF repo of LoRA weights."""
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
+    # bf16 only on GPUs that support it (T4 does not); otherwise full float32
+    dtype = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float32
     model = AutoModelForCausalLM.from_pretrained(model_name, dtype=dtype, device_map="auto")
     if adapter:
         from peft import PeftModel

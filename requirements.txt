@@ -1,0 +1,23 @@
+# Core training stack (same libraries as the reference notebooks)
+# Versions are minimums; after the first working run, freeze with: uv pip freeze > requirements.lock
+torch>=2.4
+transformers>=4.46
+trl>=0.12            # PPOTrainer, GRPOTrainer, RewardTrainer
+peft>=0.13           # LoRA adapters
+datasets>=3.0
+accelerate>=1.0
+
+# Hugging Face Hub (push models / datasets)
+huggingface_hub>=0.26
+
+# Evaluation, charts and the LinkedIn GIF
+pandas>=2.2
+matplotlib>=3.9
+imageio>=2.35
+pyyaml>=6.0
+
+# Notebooks
+ipykernel>=6.29
+
+# bitsandbytes (4-bit loading) is installed only on Colab/Linux GPU:
+#   pip install bitsandbytes

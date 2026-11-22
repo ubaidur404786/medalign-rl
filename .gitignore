@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Large training outputs (models go to Hugging Face, not GitHub)
+outputs/
+checkpoints/
+*.safetensors
+*.bin
+wandb/
+
+# Frontend
+node_modules/
+dist/

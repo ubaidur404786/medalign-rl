@@ -129,6 +129,10 @@ def chip(d, xy, text, color, font=F_SM):
 
 # ---------- detail-panel animations (t goes 0..1) ----------
 PX0, PY0, PX1, PY1 = 640, 515, 1336, 835
+# Layout knobs (overridden by make_flow_gif_vertical.py)
+ENTRY = [(5, 280), (40, 280)]
+PANEL_TOP, CAP_XY, BODY_XY, DIVIDER, OUT_W = 505, (75, 530), (75, 580), True, 1100
+IDLE_TEXT = "From raw text to a safe assistant — in three stages and three alignment methods."
 
 
 def panel_pre(d, t):
@@ -273,7 +277,7 @@ def render(done, active, t=1.0, flow=None, pulse=0.0):
         tgt = name.split("_")[-1] if name.startswith("out") else name
         on = (tgt in lit) if not name.startswith("out") else ("out" in lit and tgt in lit)
         arrow(d, path, mix(COL[tgt if not name.startswith("out") else "out"], 0.8) if on else LINE)
-    arrow(d, [(5, 280), (40, 280)], mix(COL["pre"], 0.8) if "pre" in lit else LINE)
+    arrow(d, ENTRY, mix(COL["pre"], 0.8) if "pre" in lit else LINE)
     for k in ORDER:
         draw_box(img, d, k, "active" if k == active else ("done" if k in done else "future"), pulse)
     for path, col, tt in flow or []:
@@ -282,24 +286,25 @@ def render(done, active, t=1.0, flow=None, pulse=0.0):
             r = 7 - j
             d.ellipse((x - r, y - r, x + r, y + r), fill=col)
     # detail panel
-    d.rounded_rectangle((40, 505, W - 40, H - 20), 18, fill=CARD, outline=LINE, width=2)
+    d.rounded_rectangle((40, PANEL_TOP, W - 40, H - 20), 18, fill=CARD, outline=LINE, width=2)
     if active:
         c = COL[active]
-        d.rounded_rectangle((40, 505, 50, H - 20), 5, fill=c)
+        d.rounded_rectangle((40, PANEL_TOP, 50, H - 20), 5, fill=c)
         head, body = CAPTION[active]
-        d.text((75, 530), head, font=F_CAPH, fill=c)
-        d.multiline_text((75, 580), body, font=F_CAP, fill=INK, spacing=10)
-        d.line([(PX0 - 20, 530), (PX0 - 20, H - 45)], fill=LINE, width=2)
+        d.text(CAP_XY, head, font=F_CAPH, fill=c)
+        d.multiline_text(BODY_XY, body, font=F_CAP, fill=INK, spacing=10)
+        if DIVIDER:
+            d.line([(PX0 - 20, 530), (PX0 - 20, H - 45)], fill=LINE, width=2)
         PANEL[active](d, t)
     else:
-        d.text((W / 2, 670), "From raw text to a safe assistant — in three stages and three alignment methods.",
+        d.text((W / 2, (PANEL_TOP + H) / 2), IDLE_TEXT,
                font=F_CAPH, fill=MUTED, anchor="mm")
     return img
 
 
 def flows_into(k):
     if k == "pre":
-        return [[(5, 280), (40, 280)]]
+        return [ENTRY]
     if k == "out":
         return [ARROWS["out_ppo"], ARROWS["out_grpo"], ARROWS["out_dpo"]]
     return [ARROWS[k]]
@@ -320,7 +325,7 @@ def main():
         done.append(k)
     frames.append(render(done, None)); durs.append(2200)
 
-    small = [f.resize((1100, int(H * 1100 / W)), Image.LANCZOS) for f in frames]
+    small = [f.resize((OUT_W, int(H * OUT_W / W)), Image.LANCZOS) for f in frames]
     sample = small[::12]
     sheet = Image.new("RGB", (small[0].width, small[0].height * len(sample)))
     for i, f in enumerate(sample):

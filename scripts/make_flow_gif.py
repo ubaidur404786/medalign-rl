@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "assets" / "llm_alignment_flow.gif"
 FD = "C:/Windows/Fonts/"
-W, H = 1376, 860
+W, H = 1376, 925
 
 BG, INK, MUTED, LINE, CARD = (247, 249, 252), (22, 30, 46), (100, 112, 135), (205, 212, 225), (255, 255, 255)
 COL = {"pre": (100, 116, 139), "sft": (37, 99, 235), "hf": (147, 51, 234), "ppo": (234, 88, 12),
@@ -53,6 +53,8 @@ def F(name, size):
 
 
 F_TITLE, F_BOX, F_SUB, F_TAG = F("segoeuib.ttf", 40), F("segoeuib.ttf", 22), F("segoeui.ttf", 16), F("seguisb.ttf", 13)
+BADGE = {"pre": "1", "sft": "2", "hf": "3", "ppo": "A", "grpo": "B", "dpo": "C", "out": "R"}
+F_BADGE = F("segoeuib.ttf", 20)
 F_BOX_S, F_SUB_S = F("segoeuib.ttf", 18), F("segoeui.ttf", 14)
 F_CAPH, F_CAP, F_SM, F_SMB = F("segoeuib.ttf", 26), F("segoeui.ttf", 19), F("segoeui.ttf", 16), F("seguisb.ttf", 16)
 F_EMO, F_EMO_S = F("seguiemj.ttf", 34), F("seguiemj.ttf", 22)
@@ -128,10 +130,10 @@ def chip(d, xy, text, color, font=F_SM):
 
 
 # ---------- detail-panel animations (t goes 0..1) ----------
-PX0, PY0, PX1, PY1 = 640, 515, 1336, 835
+PX0, PY0, PX1, PY1 = 640, 585, 1336, 885
 # Layout knobs (overridden by make_flow_gif_vertical.py)
 ENTRY = [(5, 280), (40, 280)]
-PANEL_TOP, CAP_XY, BODY_XY, DIVIDER, OUT_W = 505, (75, 530), (75, 580), True, 1100
+PANEL_TOP, CAP_XY, BODY_XY, DIVIDER, OUT_W = 505, (75, 530), (70, 595), True, 1100
 IDLE_TEXT = "From raw text to a safe assistant — in three stages and three alignment methods."
 
 
@@ -289,12 +291,24 @@ def render(done, active, t=1.0, flow=None, pulse=0.0):
     d.rounded_rectangle((40, PANEL_TOP, W - 40, H - 20), 18, fill=CARD, outline=LINE, width=2)
     if active:
         c = COL[active]
-        d.rounded_rectangle((40, PANEL_TOP, 50, H - 20), 5, fill=c)
+        # Tinted header band with a step badge and a progress stepper.
+        hy = PANEL_TOP + 34
+        d.rounded_rectangle((41, PANEL_TOP + 1, W - 41, PANEL_TOP + 68), 17, fill=mix(c, 0.10, CARD),
+                            corners=(True, True, False, False))
+        d.line([(41, PANEL_TOP + 68), (W - 41, PANEL_TOP + 68)], fill=mix(c, 0.35, CARD), width=2)
+        d.ellipse((60, hy - 19, 98, hy + 19), fill=c)
+        d.text((79, hy), BADGE[active], font=F_BADGE, fill=CARD, anchor="mm")
         head, body = CAPTION[active]
-        d.text(CAP_XY, head, font=F_CAPH, fill=c)
+        d.text((112, hy), head, font=F_CAPH, fill=mix(c, 0.85, INK), anchor="lm")
+        x = W - 64
+        for k in reversed(ORDER):
+            if k == active:
+                d.rounded_rectangle((x - 30, hy - 6, x, hy + 6), 6, fill=c); x -= 44
+            else:
+                d.ellipse((x - 12, hy - 6, x, hy + 6), fill=COL[k] if k in done else LINE); x -= 24
         d.multiline_text(BODY_XY, body, font=F_CAP, fill=INK, spacing=10)
         if DIVIDER:
-            d.line([(PX0 - 20, 530), (PX0 - 20, H - 45)], fill=LINE, width=2)
+            d.line([(PX0 - 20, PANEL_TOP + 90), (PX0 - 20, H - 45)], fill=LINE, width=2)
         PANEL[active](d, t)
     else:
         d.text((W / 2, (PANEL_TOP + H) / 2), IDLE_TEXT,
@@ -326,11 +340,11 @@ def main():
     frames.append(render(done, None)); durs.append(2200)
 
     small = [f.resize((OUT_W, int(H * OUT_W / W)), Image.LANCZOS) for f in frames]
-    sample = small[::12]
+    sample = small[::3]
     sheet = Image.new("RGB", (small[0].width, small[0].height * len(sample)))
     for i, f in enumerate(sample):
         sheet.paste(f, (0, i * f.height))
-    pal = sheet.quantize(colors=192, method=Image.Quantize.MEDIANCUT)
+    pal = sheet.quantize(colors=255, method=Image.Quantize.MEDIANCUT)
     q = [f.quantize(palette=pal, dither=Image.Dither.NONE) for f in small]
     OUT.parent.mkdir(exist_ok=True)
     q[0].save(OUT, save_all=True, append_images=q[1:], duration=durs, loop=0, optimize=True)

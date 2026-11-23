@@ -23,8 +23,8 @@ g.ARROWS = {
     "out_dpo": [(890, 540), (890, 575), (540, 575), (540, 610)],
 }
 # Explanation panel below: caption on top, animation underneath.
-g.PANEL_TOP, g.CAP_XY, g.BODY_XY, g.DIVIDER = 825, (80, 850), (80, 900), False
-g.PX0, g.PY0 = 190, 1010
+g.PANEL_TOP, g.CAP_XY, g.BODY_XY, g.DIVIDER = 825, (80, 850), (70, 915), False
+g.PX0, g.PY0 = 190, 1025
 g.F_CAPH, g.F_CAP = g.F("segoeuib.ttf", 30), g.F("segoeui.ttf", 22)
 g.IDLE_TEXT = "From raw text to a safe assistant"
 

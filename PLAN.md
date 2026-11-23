@@ -2,8 +2,6 @@
 
 **Goal:** Take a small medical SFT model, improve it with **PPO** and with **GRPO**, compare the two on a fixed golden dataset, and publish the models, the code and a short LinkedIn post.
 
-**Authorship:** You write and run the project. Claude Code only helps with small things: grammar, reusable helper functions, debugging and reviews. Commits use only your git identity and never mention AI.
-
 ---
 
 ## 1. The medical problem we solve
@@ -68,7 +66,7 @@ RLHF/
 │   ├── generate.py            # one generate() used by every stage
 │   └── evaluate.py            # metrics on the golden set
 ├── results/                   # metrics.json, before/after examples, charts
-└── assets/compare.gif         # LinkedIn animation
+└── assets/                   # alignment-flow GIFs (wide + 4:5)
 ```
 
 Rule: notebooks = explanation + calls; `src/` = logic. Every function has a docstring, and every notebook starts with a "What / Why / Output" markdown cell.
@@ -135,16 +133,11 @@ Write the **analysis** in markdown, answering *where* each method improved and *
 ### Phase 6 — Publish (½ day)
 - HF: 3 model repos (sft / ppo / grpo) + a dataset repo for `golden_eval`, each with a model card (metrics, intended use, medical disclaimer).
 - GitHub: clean README with the results table, charts, GIF and how to reproduce.
-- **GIF** (`assets/compare.gif`): a few frames that show one red-flag question → Base / SFT / PPO / GRPO answers appearing in turn, then the metric bar chart. Made with matplotlib + `imageio`.
+- **GIF** (`assets/llm_alignment_flow*.gif`): animated pipeline Pretraining → SFT → Human feedback → PPO / GRPO / DPO, built with Pillow (`scripts/make_flow_gif*.py`).
 - **LinkedIn post** (short, about 120 words): the problem, the method, one result line, the GIF. Put the **HF and GitHub links in the first comment**.
 
 ---
 
-## 5. How we work together
-- You run training (Colab) and paste back the metrics/errors. Claude helps debug.
-- Claude helps with: grammar in markdown/README/post, small reusable functions, code review, fixing errors.
-- After each phase: commit with your own message, update the README checklist.
-
-## 6. Checklist
+## 5. Checklist
 - [ ] P0 setup  - [ ] P1 SFT  - [ ] P2 golden set  - [ ] P3 PPO  - [ ] P4 GRPO
 - [ ] P5 compare + analysis  - [ ] P6 HF + GitHub + GIF + post

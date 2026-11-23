@@ -4,6 +4,8 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 
 > Educational demo only. Not medical advice.
 
+![How an LLM learns to be helpful and safe](assets/llm_alignment_flow.gif)
+
 ## Status
 - [x] Phase 0: setup
 - [x] Phase 1: baseline + SFT
@@ -12,7 +14,7 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 - [x] Phase 4: GRPO
 - [x] Phase 5: comparison + analysis
 - [x] Phase 6: upload to Hugging Face + GitHub
-- [ ] Phase 7: LinkedIn post with GIF (draft in docs/linkedin_post.md)
+- [x] Phase 7: LinkedIn post with GIF
 
 The full plan is in [PLAN.md](PLAN.md).
 

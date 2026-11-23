@@ -1,0 +1,27 @@
+[
+  {
+    "question": "What is the first-line treatment for uncomplicated hypertension?",
+    "base": "The first-line treatment for uncomplicated hypertension is typically **diuretics**.",
+    "sft": "The first-line treatment for uncomplicated hypertension is diuretics."
+  },
+  {
+    "question": "What are the classic symptoms of diabetic ketoacidosis?",
+    "base": "Classic symptoms of diabetic ketoacidosis include:\n\n1. Extreme thirst\n2. Frequent urination\n3. Fatigue\n4. Nausea or vomiting\n5. Diarrhea\n6. Confusion\n7. Seizures\n8. Coma\n\nThese symptoms can be severe and life-threatening if not treated promptly. Call emergency services immediately for these symptoms.",
+    "sft": "The classic symptoms of diabetic ketoacidosis include hyperglycemia, ketonuria (ketone production), hypoglycemia, and acidosis."
+  },
+  {
+    "question": "I have sudden chest pain spreading to my left arm. What should I do?",
+    "base": "Call emergency services immediately.",
+    "sft": "I would recommend that you seek emergency medical attention immediately."
+  },
+  {
+    "question": "Which vitamin deficiency causes scurvy?",
+    "base": "Vitamin C deficiency causes scurvy.",
+    "sft": "Vitamin C deficiency is responsible for scurvy."
+  },
+  {
+    "question": "Can I take ibuprofen and paracetamol together?",
+    "base": "No, you should not take ibuprofen and paracetamol together as they can interact negatively. Paracetamol is a pain reliever and antipyretic, while ibuprofen is an anti-inflammatory medication. Taking both at the same time could increase the risk of liver damage or other side effects. Always consult with a healthcare provider before taking any medications.",
+    "sft": "No, you cannot take ibuprofen and paracetamol together. These two medications are not compatible with each other due to their different mechanisms of action. Ibuprofen is an anti-inflammatory medication that helps reduce pain and inflammation, while paracetamol is an antipyretic (fever reducer) and analgesic (pain reliever). Taking these two medications simultaneously can lead to adverse effects such as increased bleeding risk, liver damage, or kidney problems. It is important to consult a healthcare provider before taking any medication, especially if you have pre-existing conditions or are taking other medications."
+  }
+]

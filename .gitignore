@@ -14,3 +14,6 @@ checkpoints/
 *.bin
 wandb/
 
+
+# AI-generated explainer drafts (local only)
+extra_ai_generated_explanation/

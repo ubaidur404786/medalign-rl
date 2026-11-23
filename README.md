@@ -6,18 +6,6 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 
 ![How an LLM learns to be helpful and safe](assets/llm_alignment_flow.gif)
 
-## Status
-- [x] Phase 0: setup
-- [x] Phase 1: baseline + SFT
-- [x] Phase 2: golden dataset
-- [x] Phase 3: PPO
-- [x] Phase 4: GRPO
-- [x] Phase 5: comparison + analysis
-- [x] Phase 6: upload to Hugging Face + GitHub
-- [x] Phase 7: LinkedIn post with GIF
-
-The full plan is in [PLAN.md](PLAN.md).
-
 ## Results
 Golden eval set: 200 items (MCQ, red-flag symptoms, unsafe requests). Model: Qwen2.5-0.5B-Instruct + LoRA, trained on a Colab T4.
 
@@ -53,9 +41,3 @@ uv run python scripts/smoke_test.py
 | `data/` | golden eval set, preference pairs |
 | `results/` | metrics, before/after examples, charts |
 | `reference/` | original PPO / GRPO course notebooks |
-
-## Contributors
-- [ubaidur404786](https://github.com/ubaidur404786) — author
-- [Claude Code](https://claude.com/claude-code) — coding assistant (co-author on commits from Phase 3 onward)
-
-See the [Contributors](https://github.com/ubaidur404786/medalign-rl/graphs/contributors) page.

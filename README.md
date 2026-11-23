@@ -12,8 +12,7 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 - [x] Phase 4: GRPO
 - [x] Phase 5: comparison + analysis
 - [x] Phase 6: upload to Hugging Face + GitHub
-- [ ] Phase 7: FastAPI + React app + deployment
-- [ ] Phase 8: LinkedIn post with GIF (draft in docs/linkedin_post.md)
+- [ ] Phase 7: LinkedIn post with GIF (draft in docs/linkedin_post.md)
 
 The full plan is in [PLAN.md](PLAN.md).
 
@@ -52,7 +51,6 @@ uv run python scripts/smoke_test.py
 | `data/` | golden eval set, preference pairs |
 | `results/` | metrics, before/after examples, charts |
 | `reference/` | original PPO / GRPO course notebooks |
-| `backend/`, `frontend/` | FastAPI + React demo (Phase 7) |
 
 ## Contributors
 - [ubaidur404786](https://github.com/ubaidur404786) — author

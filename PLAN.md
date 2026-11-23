@@ -1,6 +1,6 @@
 # MedAlign-RL — Plan
 
-**Goal:** Take a small medical SFT model, improve it with **PPO** and with **GRPO**, compare the two on a fixed golden dataset, and publish the models, the code and a short LinkedIn post. Then build a FastAPI + React demo app. Deployment comes last.
+**Goal:** Take a small medical SFT model, improve it with **PPO** and with **GRPO**, compare the two on a fixed golden dataset, and publish the models, the code and a short LinkedIn post.
 
 **Authorship:** You write and run the project. Claude Code only helps with small things: grammar, reusable helper functions, debugging and reviews. Commits use only your git identity and never mention AI.
 
@@ -24,7 +24,7 @@ RLHF fixes behaviour rather than knowledge, so it is a good fit for problems 2 a
 | **GRPO** | **Rule-based rewards**: correct option, answer format, safety-phrase check for red flags, length | Needs no value model or reward model, so it is cheaper and more stable on small GPUs. This is the DeepSeek-R1 approach. |
 
 ### Links to your earlier work
-- `fine-tune-KBAs-Semi-Structure`: same pattern of tiny HF models + LoRA + FastAPI/React. Reuse its project layout and app skeleton. Lesson learned there: SFT does not inject facts. RL here is about **behaviour** (correctness when the answer can be checked, safety, format).
+- `fine-tune-KBAs-Semi-Structure`: same pattern of tiny HF models + LoRA. Reuse its project layout. Lesson learned there: SFT does not inject facts. RL here is about **behaviour** (correctness when the answer can be checked, safety, format).
 - `deep_eval_pipeline` / `rag-eval-deepeval` / `llm-sql-eval`: reuse the evaluation ideas (golden set, metrics table, LLM-as-judge).
 - `Ai-Safety-And-LLM-Security`: the safety angle. Treat red-flag handling as a guardrail metric.
 
@@ -68,9 +68,7 @@ RLHF/
 │   ├── generate.py            # one generate() used by every stage
 │   └── evaluate.py            # metrics on the golden set
 ├── results/                   # metrics.json, before/after examples, charts
-├── assets/compare.gif         # LinkedIn animation
-├── backend/                   # FastAPI (phase 7)
-└── frontend/                  # React (phase 7)
+└── assets/compare.gif         # LinkedIn animation
 ```
 
 Rule: notebooks = explanation + calls; `src/` = logic. Every function has a docstring, and every notebook starts with a "What / Why / Output" markdown cell.
@@ -140,14 +138,6 @@ Write the **analysis** in markdown, answering *where* each method improved and *
 - **GIF** (`assets/compare.gif`): a few frames that show one red-flag question → Base / SFT / PPO / GRPO answers appearing in turn, then the metric bar chart. Made with matplotlib + `imageio`.
 - **LinkedIn post** (short, about 120 words): the problem, the method, one result line, the GIF. Put the **HF and GitHub links in the first comment**.
 
-### Phase 7 — App (2 days)
-- **FastAPI** `backend/`: `POST /compare {question}` returns answers from the selected models, plus `GET /health`. Load models lazily, one at a time (RAM limit).
-- **React** `frontend/`: a question box, 4 answer columns side by side, and badges for safety/format.
-- Reuse the skeleton from `fine-tune-KBAs-Semi-Structure`.
-
-### Phase 8 — Deployment (later)
-- HF Spaces (Docker) or a small cloud VM. Plan it after Phase 7.
-
 ---
 
 ## 5. How we work together
@@ -157,4 +147,4 @@ Write the **analysis** in markdown, answering *where* each method improved and *
 
 ## 6. Checklist
 - [ ] P0 setup  - [ ] P1 SFT  - [ ] P2 golden set  - [ ] P3 PPO  - [ ] P4 GRPO
-- [ ] P5 compare + analysis  - [ ] P6 HF + GitHub + GIF + post  - [ ] P7 app  - [ ] P8 deploy
+- [ ] P5 compare + analysis  - [ ] P6 HF + GitHub + GIF + post

@@ -17,3 +17,13 @@ wandb/
 
 # AI-generated explainer drafts (local only)
 extra_ai_generated_explanation/
+
+# Local-only working files (not needed to reproduce results)
+PLAN.md
+CLAUDE.md
+assets/
+reference/
+docs/
+configs/
+scripts/make_flow_gif*.py
+scripts/smoke_test.py

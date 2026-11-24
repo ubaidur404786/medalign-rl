@@ -4,7 +4,7 @@ Start from a small medical SFT model, improve it with **PPO** (reward model) and
 
 > Educational demo only. Not medical advice.
 
-![How an LLM learns to be helpful and safe](assets/llm_alignment_flow.gif)
+![How an LLM learns to be helpful and safe](results/llm_alignment_flow.gif)
 
 ## Results
 Golden eval set: 200 items (MCQ, red-flag symptoms, unsafe requests). Model: Qwen2.5-0.5B-Instruct + LoRA, trained on a Colab T4.
@@ -30,14 +30,14 @@ Golden eval set: 200 items (MCQ, red-flag symptoms, unsafe requests). Model: Qwe
 ```bash
 uv venv
 uv pip install -r requirements.txt
-uv run python scripts/smoke_test.py
 ```
+Then run `notebooks/01` → `06` in order (a free Colab T4 is enough).
 
 ## Layout
 | Folder | Contents |
 |---|---|
 | `notebooks/` | one notebook per step (explanations in markdown) |
 | `src/medrl/` | reusable functions the notebooks import |
-| `data/` | golden eval set, preference pairs |
+| `data/` | golden eval set |
+| `scripts/` | rebuilds the golden eval set |
 | `results/` | metrics, before/after examples, charts |
-| `reference/` | original PPO / GRPO course notebooks |
